@@ -109,17 +109,34 @@
                 :elementAnimations = "elementAnimationsList"
             >
                 <template #listElement="{data}">
-                    <div v-if="!!data.isForMobile && isMobileDevice" class="row mb-4 mt-4 p-2 m-0">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-2 d-flex justify-content-center">
-                            <div class="pb-3" v-html="data.svg"></div>
+                    <div v-if="!isMobileDevice" class="row mb-4 mt-4 p-2 m-0">
+                        <div v-if="!data.isForMobile" class="col-12 p-0 row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-2 d-flex justify-content-center">
+                                <div class="pb-3" v-html="data.svg"></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-10 d-flex flex-column align-items-lg-start align-items-md-center align-items-sm-center align-items-xs-center align-items-center align-items-center">
+                                <h4 class="text-wrap text-lg-start text-md-center text-sm-center text-center">{{ data.info }}</h4>
+                                <a v-if="data.isLink" target="_blank" :href="data.linkData" type="button" class="mt-3 btn text-light justify-content-center text-decoration-none text-light w-sm-50 p-2 rounded">
+                                    <h4 class="text-light border border-white p-2 rounded">
+                                        {{ data.linkText }}
+                                    </h4>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-10 d-flex flex-column align-items-lg-start align-items-md-center align-items-sm-center align-items-xs-center align-items-center align-items-center">
-                            <h4 class="text-wrap text-lg-start text-md-center text-sm-center text-center">{{ data.info }}</h4>
-                            <a v-if="data.isLink" target="_blank" :href="data.linkData" type="button" class="mt-3 btn text-light justify-content-center text-decoration-none text-light w-sm-50 p-2 rounded">
-                                <h4 class="text-light border border-white p-2 rounded">
-                                    {{ data.linkText }}
-                                </h4>
-                            </a>
+                    </div>
+                    <div v-else>
+                        <div class="col-12 p-0 row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-2 d-flex justify-content-center">
+                                <div class="pb-3" v-html="data.svg"></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-10 d-flex flex-column align-items-lg-start align-items-md-center align-items-sm-center align-items-xs-center align-items-center align-items-center">
+                                <h4 class="text-wrap text-lg-start text-md-center text-sm-center text-center">{{ data.info }}</h4>
+                                <a v-if="data.isLink" target="_blank" :href="data.linkData" type="button" class="mt-3 btn text-light justify-content-center text-decoration-none text-light w-sm-50 p-2 rounded">
+                                    <h4 class="text-light border border-white p-2 rounded">
+                                        {{ data.linkText }}
+                                    </h4>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </template>

@@ -7,6 +7,5 @@
     #currentPageContainer{
         margin-top:4em;
         padding: 2em 1em 2em 1em;
-        width: 100vw;
     }
 </style>

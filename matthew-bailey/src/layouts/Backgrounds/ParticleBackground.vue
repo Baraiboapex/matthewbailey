@@ -54,12 +54,11 @@
     #particleBackground{
         top: 0;
         left: 0;
-        height: 100%;
-        z-index: -1;
+        width: 100%;
+        z-index: 500;
         display: block;
+        position:absolute;
         overflow-x: hidden !important;
         overflow-y: visible !important;
-        top:0;
-        left:0;
     }
 </style>

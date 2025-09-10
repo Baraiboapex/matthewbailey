@@ -5,15 +5,17 @@ import About from '../pages/About.vue'
 import Projects from '../pages/Projects.vue';
 import Contact from '../pages/Contact.vue';
 
+const BASE_ROUTE = "/matthewbailey/" 
+
 const routes = [
     { name:"Home", path: "/", component: Home },
     { name:"About", path: "/about", component: About },
     { name:"Projects", path: "/projects/:projectId?", props:true, component: Projects },
-    { name:"Contact", path:"/contact", component:Contact}
+    { name:"Contact", path: "/contact", component:Contact}
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(BASE_ROUTE),
   routes,
 });
 

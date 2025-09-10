@@ -5,10 +5,12 @@
     import { BG_PARTICLES_CONFIG } from './layouts/Backgrounds/particleConfig';
 </script>
 <template>
-  <div class="container-fluid p-0">
+  <div id="app" class="container-fluid p-0">
     <ParticleBackground :particles-config="BG_PARTICLES_CONFIG">
-      <NavBar/>
-      <RouterView/>
+      <div class="container-fluid p-0">
+        <NavBar/>
+        <RouterView/>
+      </div>
     </ParticleBackground>
   </div>
 </template>

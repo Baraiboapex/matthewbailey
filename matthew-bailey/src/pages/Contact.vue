@@ -109,7 +109,7 @@
                 :elementAnimations = "elementAnimationsList"
             >
                 <template #listElement="{data}">
-                    <div v-if="!data.isForMobile && !isMobileDevice" class="row mb-4 mt-4 p-2 m-0">
+                    <div v-if="!data.isForMobile || !isMobileDevice" class="row mb-4 mt-4 p-2 m-0">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-2 d-flex justify-content-center">
                             <div class="pb-3" v-html="data.svg"></div>
                         </div>

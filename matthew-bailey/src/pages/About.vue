@@ -1,0 +1,136 @@
+<script setup>
+    import { reactive } from 'vue';
+    
+    import PageContainer from '../components/UI/Reusable/PageContainer/PageContainer.vue';
+    import ParagraphContainer from '../components/UI/Reusable/ParagraphContainer.vue';
+    import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
+    import ParticleBackground from '../layouts/Backgrounds/ParticleBackground.vue';
+
+    import { BG_PARTICLES_CONFIG } from '../layouts/Backgrounds/particleConfig';
+
+    const ABOUT_IMAGE = "./images/owner-image.png"
+    const ABOUT_TEXT = `
+        Well hello, there! My name is Matthew Bailey! I am a software developer
+        with 6 years of experience and currently expanding my horizons in machine
+        machine learning and AI. With my amazing creative problem solving skills, 
+        and my ability to learn new tech quickly, I look forward to helping you with
+        all of your projects!
+    `;
+    const ABOUT_ME_RESUME = [
+        {
+            id:0,
+            jobTitle:"Senior Application Developer",
+            company:"Stealth Startup",
+            yearsActive:"Jul 2024 - Present · 1 yr 2 mos",
+            responsibilities:[
+                "Built and maintained Node.js microservices with Firebase backend and Vue.js frontend",
+                "Deployed scalable application instances using Docker containers",
+                "Implemented CI/CD pipelines with GitHub Actions and Azure Pipelines (YAML)",
+                "Developed Google Apps Script functions to sync Google Sheets data with deployed services, later migrated to Node.js microservices",
+                "Applied project management tools to coordinate development and delivery timelines",
+                "Studied and prototyped AI/ML integrations to enhance productivity and prepare for future product launches"
+            ],
+        },
+        {
+            id:1,
+            jobTitle:"Application Developer",
+            company:"Dymeng LLC.",
+            yearsActive:"May 2022 - Jun 2024 · 2 yrs 2 mos",
+            responsibilities:[
+                "I was responsible for building multiple web applications using my strong background in javascript and front end development to build highly adaptable FE architecture to boost productivity for other developers. And also began to build up my skill set with mentoring newer developers, of which is something that I am deeply passionate about.",
+                "Mentored a junior BE developer by helping them remain on task to meet tight deadlines.",
+                "Wrote reusable VUE.js FE code and SCSS styles.",
+                "Designed multiple high-quality, well-received high-fidelity and low-fidelity designs using Adobe XD and Balsamiq that were translated to code."
+            ],
+        },
+        {
+            id:2,
+            jobTitle:"Associate Web Developer",
+            company:"Bluetree/Tegria",
+            yearsActive:"Sep 2020 - Feb 2021 · 6 mos",
+            responsibilities:[
+                "Aided in updating a well-tested, cross-browser, multi-tenant, multi-paged call center intake tool using React.js and C# Web API’s with JSON web tokens while under a tight schedule.",
+                "ON DAY ONE, with my positive attitude and strong passion, I single-handedly decreased the development time of this project by 35% getting the entire app ready for the final round of QA in about 3 weeks."
+            ],
+        }
+    ]
+
+    const elementAnimationsList = [
+        {
+            startPoint:400,
+            animation:"SLIDE_IN_LEFT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        },
+        {
+            startPoint:-400,
+            animation:"SLIDE_IN_RIGHT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        },
+        {
+            startPoint:400,
+            animation:"SLIDE_ID_LEFT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        },
+    ];
+
+    const state = reactive({
+        aboutText:ABOUT_TEXT,
+        aboutImage:ABOUT_IMAGE,
+        aboutResume:ABOUT_ME_RESUME
+    });
+    
+</script>
+<template>
+    <PageContainer>
+        <ParagraphContainer class="p-4 rounded-top">
+            <div class="row m-0 p-0">
+                <div class="col-12 m-0 p-0">
+                        <div class="d-flex flex-column justify-content-center w-100 p-2">
+                            <div class="user-image w-100 d-flex align-items-center justify-content-center mt-4 mb-4">
+                                <img height="220" width="220" class="image-accent" :src="state.aboutImage" alt="picture of matt bailey's awesomeness"/>
+                            </div>
+                            <div class="w-100">
+                                <p class="h4">{{ state.aboutText }}</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </ParagraphContainer>
+        <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
+            <div class="row m-0">
+                <div class="col-12 m-0 p-0">
+                    <AnimatedList
+                        :elementsToAnimate="state.aboutResume"
+                        :elementAnimations = "elementAnimationsList"
+                    >
+                        <template #listElement="{data}">
+                            <div class="d-flex border-bottom mt-4 mb-4 justify-content-center w-100 p-2 flex-column">
+                                <h2>{{ data.jobTitle }}</h2>
+                                <h3>{{ data.company }}</h3>
+                                <h4>{{ data.yearsActive }}</h4>
+                                <br/>
+                                <ul>
+                                    <li v-for="responsibility in data.responsibilities" class="text-align-left">
+                                        {{ responsibility }}
+                                    </li>
+                                </ul>   
+                            </div>
+                        </template>
+                    </AnimatedList>
+                </div>
+            </div>
+        </ParagraphContainer>
+    </PageContainer>
+</template>

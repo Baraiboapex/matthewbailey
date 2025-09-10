@@ -1,0 +1,19 @@
+/*----DIVIDERS STYLIZATION COMPONENTS----*/
+.blur{
+    backdrop-filter:blur(1em);
+    -webkit-backdrop-filter:blur(1em);
+}
+/*----DIVIDERS STYLIZATION COMPONENTS----*/
+
+/*----IMAGE STYLIZATION COMPONENTS----*/
+.image-accent{
+    border-radius:100%;
+    background:
+        linear-gradient(to bottom, #65e6ca, #0d6e89) border-box;
+    box-shadow: 0.5rem 0.5rem 1rem 0.5rem rgb(5, 55, 56);
+}
+/*----IMAGE STYLIZATION COMPONENTS----*/
+
+/*----COLOR CSS----*/
+
+/*----COLOR CSS----*/

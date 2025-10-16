@@ -5,7 +5,7 @@
 </template>
 <style lang="scss" scoped>
     #currentPageContainer{
-        margin-top:4em;
+        margin-top:6em;
         padding: 2em 1em 2em 1em;
     }
 </style>

@@ -39,7 +39,7 @@ Elastic Net Regression
 
 After completing the analysis, I then gave a report of what can be done to increase the rental quantity during certain seasons
             `,
-            projectLink:"",
+            projectLink:"https://lnkd.in/ehSPMY-y",
         },
         {
             id:3,

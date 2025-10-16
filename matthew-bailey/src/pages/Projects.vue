@@ -111,6 +111,20 @@ After completing the analysis, I then gave a report of what can be done to incre
         state.elementAnimationsList = elementAnimationsList;
     }
 
+    const scrollToSelectedProject = (projectId) => {
+        const incommingId = route.query.projectId;
+
+        if(incommingId){
+            const parentEl = myProjectsRef;
+            const childElToScrollTo = projectRefs.value[incommingId];
+
+            parentEl.scrollTo({
+                top:childElToScrollTo.offsetTop,
+                behavior:"auto"
+            });
+        }
+    };
+
     watch(
         () => route.params.projectId,
         (newId, oldId) => {
@@ -123,6 +137,7 @@ After completing the analysis, I then gave a report of what can be done to incre
     onMounted(()=>{
         if(route.params.projectId){
             selectProject(route.params.projectId);
+            scrollToSelectedProject(route.params.projectId);
         }
     });
 </script>
@@ -135,32 +150,39 @@ After completing the analysis, I then gave a report of what can be done to incre
                 </div>
             </div>
         </ParagraphContainer>
-        <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
-            <div class="col-12 m-0 p-2">
-                <div id="myProjectsRef" class="row m-0 ">
-                    <AnimatedList
-                        :elementsToAnimate="state.currentProjects"
-                        :elementAnimations = "state.elementAnimationsList"
-                    >
-                        <template #listElement="{data}">
-                            <div class="flex-fill border-bottom p-2 container">
-                                <div class="row mt-4 mb-4">
-                                    <div class="col-lg-6">
-                                        <img :src="data.projectImage" class="project-image square-image-accent"/>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mt-3 d-flex flex-column flex-fill">
-                                            <h2>{{ data.projectName }}</h2>
-                                            <p>{{ data.projectDescription }}</p>
-                                            <a class="btn btn btn-light w-50" :href="data.projectLink">
-                                                View Project
-                                            </a>
+        <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="rounded-bottom">
+            <div class="row m-0">
+                <div class="col-12 m-0 p-2">
+                    <div id="myProjectsRef">
+                        <div :style="{height:(route.params.projectId ? '90vh' : 'auto')}" class="row m-0">
+                            <div class="col-12">
+                                <AnimatedList
+                                    :elementsToAnimate="state.currentProjects"
+                                    :elementAnimations = "state.elementAnimationsList"
+                                    :canAnimate = "!route.params.projectId"
+                                >
+                                    <template #listElement="{data}">
+                                        <div class="flex-fill border-bottom p-2">
+                                            <div class="row mt-4 mb-4">
+                                                <div class="col-lg-6">
+                                                    <img :src="data.projectImage" class="project-image square-image-accent p-2"/>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mt-3 d-flex flex-column flex-fill">
+                                                        <h2>{{ data.projectName }}</h2>
+                                                        <p>{{ data.projectDescription }}</p>
+                                                        <a class="btn btn btn-light w-50" :href="data.projectLink">
+                                                            View Project
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </template>
+                                </AnimatedList>
                             </div>
-                        </template>
-                    </AnimatedList>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ParagraphContainer>

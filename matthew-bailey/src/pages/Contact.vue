@@ -4,6 +4,7 @@
     import ParagraphContainer from "../components/UI/Reusable/ParagraphContainer.vue";
     import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
     import { detectDevice } from "../helpers/deviceHelpers";
+import { onMounted } from "vue";
 
     const TAGLINE = `
         Questions? Comments? Drop me an email or give me a call! I can also be reached
@@ -93,6 +94,10 @@
 
     const isMobileDevice = ref(detectDevice().isMobileDevice);
 
+    onMounted(()=>{
+        window.scrollTo(0, 0);
+    })
+
 </script>
 <template>
     <PageContainer>
@@ -107,6 +112,7 @@
             <AnimatedList
                 :elementsToAnimate="state.contactInfo"
                 :elementAnimations = "elementAnimationsList"
+                :canAnimate = "true"
             >
                 <template #listElement="{data}">
                     <div v-if="!isMobileDevice" class="row mb-4 mt-4 p-2 m-0 w-100">

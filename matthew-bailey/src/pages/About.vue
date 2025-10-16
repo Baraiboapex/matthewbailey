@@ -1,5 +1,5 @@
 <script setup>
-    import { reactive } from 'vue';
+    import { reactive ,onMounted } from 'vue';
     
     import PageContainer from '../components/UI/Reusable/PageContainer/PageContainer.vue';
     import ParagraphContainer from '../components/UI/Reusable/ParagraphContainer.vue';
@@ -106,6 +106,10 @@
         aboutResume:ABOUT_ME_RESUME
     });
     
+    onMounted(()=>{
+        window.scrollTo(0, 0);
+    })
+
 </script>
 <template>
     <PageContainer>
@@ -126,6 +130,7 @@
                     <AnimatedList
                         :elementsToAnimate="state.aboutResume"
                         :elementAnimations = "elementAnimationsList"
+                        :canAnimate = "true"
                     >
                         <template #listElement="{data}">
                             <div class="d-flex border-bottom mt-4 mb-4 justify-content-center w-100 p-2 flex-column">

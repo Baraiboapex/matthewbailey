@@ -77,7 +77,7 @@
             </div>
       </ParagraphContainer>
       <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
-    <div class="row">
+    <div class="row m-0">
       <div class="col-12 m-0 pt-2 pb-2 d-flex flex-column justify-content-center text-center">
             <h1 class="m-5">My Most Recent Projects</h1>
             <hr class="border border-light"/>

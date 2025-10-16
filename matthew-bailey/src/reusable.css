@@ -6,6 +6,9 @@
 /*----DIVIDERS STYLIZATION COMPONENTS----*/
 
 /*----IMAGE STYLIZATION COMPONENTS----*/
+.scroll-container{
+    height:auto;
+}
 .image-accent{
     border-radius:100%;
     background:

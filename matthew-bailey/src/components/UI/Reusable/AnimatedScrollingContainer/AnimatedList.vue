@@ -11,7 +11,8 @@
 
     const props = defineProps({
         elementsToAnimate:Array,
-        elementAnimations:Array
+        elementAnimations:Array,
+        canAnimate:Boolean
     });
 
     const state = reactive({
@@ -57,32 +58,35 @@
     };
 
     const constructScrollableList = async() => {
-        
-        await nextTick();
+        console.log("CAN ANIMATE : ", props.canAnimate)
+        if(props.canAnimate){
+            await nextTick();
 
-        const element = ANIMATION_OBJECT;
-        const buildElementsToAnimate = [];
+            const element = ANIMATION_OBJECT;
+            const buildElementsToAnimate = [];
 
-        for(const [index, item] of props.elementsToAnimate.entries()){
-            const el = {...element};
-            el.elementData = item;
-            el.elementToAnimate = itemRefs.value[item.id];
-            
-            setElementStartPoint(el.elementToAnimate, props.elementAnimations[index].startPoint);
+            for(const [index, item] of props.elementsToAnimate.entries()){
+                const el = {...element};
+                el.elementData = item;
+                el.elementToAnimate = itemRefs.value[item.id];
+                
+                setElementStartPoint(el.elementToAnimate, props.elementAnimations[index].startPoint);
 
-            console.log(el.elementToAnimate.style.translate);
-            const getParentContainerBoundingBox = scrollContainer.value.getBoundingClientRect();
+                console.log(el.elementToAnimate.style.translate);
+                const getParentContainerBoundingBox = scrollContainer.value.getBoundingClientRect();
 
-            const animationObj = CUSTOMIZE_ANIMATIONS({
-                animationsObject:ALLOWED_ANIMATIONS,
-                animationName:ANIMATIONS.SLIDE_IN_LEFT,
-                animationValues:props.elementAnimations[index].animationParams(getParentContainerBoundingBox.left/screen.width)
-            });
+                const animationObj = CUSTOMIZE_ANIMATIONS({
+                    animationsObject:ALLOWED_ANIMATIONS,
+                    animationName:ANIMATIONS.SLIDE_IN_LEFT,
+                    animationValues:props.elementAnimations[index].animationParams(getParentContainerBoundingBox.left/screen.width)
+                });
 
-            el.animationParams = animationObj;
-            buildElementsToAnimate.push(el);
+                el.animationParams = animationObj;
+                buildElementsToAnimate.push(el);
+            }
+            state.elementList = buildElementsToAnimate;
         }
-        state.elementList = buildElementsToAnimate;
+        
     };
 
     const setupScroll = () => {
@@ -91,7 +95,6 @@
                 alternate: true,
                 autoplay: onScroll(el.elementToAnimate,{
                     container: scrollContainer.value,
-                    sync:1,
                     enter: 'max bottom',
                     leave: 'min top',
                 }),
@@ -105,7 +108,7 @@
             );
         });
     };
-
+    
     onMounted(()=>{
         constructScrollableList();
         nextTick(()=>{
@@ -114,17 +117,21 @@
     });
 
     onBeforeUnmount(()=>{
-        state.elementList = [];
-        state.animationInstance.pause();
-        state.animationInstance = null;
-        Object.keys(itemRefs.value).forEach((key)=>{
-            utils.remove(itemRefs.value[key]);
-        });
-        itemRefs.value = {};
+        if(props.canAnimate){
+            state.elementList = [];
+            if(state.animationInstance){
+                state.animationInstance.pause();
+                state.animationInstance = null;
+                Object.keys(itemRefs.value).forEach((key)=>{
+                    utils.remove(itemRefs.value[key]);
+                });
+                itemRefs.value = {};
+            }
+        }
     });
 </script>
 <template>
-    <div ref="scrollContainer" class="scroll-container d-flex flex-column justify-content-center align-items-center">
+    <div id="scrollContainer" ref="scrollContainer" class="scroll-container d-flex flex-column justify-content-center">
         <div class="item-container w-100" v-for="element in props.elementsToAnimate" :key="element.id" :ref="(el)=>setRef(element.id, el)">
             <slot name="listElement" :data="element">
             </slot>

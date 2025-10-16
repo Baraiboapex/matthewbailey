@@ -92,7 +92,7 @@ Lasso Regression (L1 Regularization)
 Elastic Net Regression
 
 After completing the analysis, I then gave a report of what can be done to increase the rental quantity during certain seasons
-            `,projectLink:""},{id:3,projectImage:"./images/low-customer-satisfaction.jpg",projectName:"Streamlining the Customer Grievance Process",projectDescription:`
+            `,projectLink:"https://lnkd.in/ehSPMY-y"},{id:3,projectImage:"./images/low-customer-satisfaction.jpg",projectName:"Streamlining the Customer Grievance Process",projectDescription:`
                 Here is another project that I am proud of. I was tasked with creating a complaint trafficking 
                 pipeline for a fictional bank using feature engineering and a good amount of data wrangling along 
                 with text preprocessing techniques to prepare data to be fed to 2 different models. 

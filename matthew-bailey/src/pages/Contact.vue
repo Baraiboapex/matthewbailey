@@ -144,7 +144,7 @@
         </ParagraphContainer>
     </PageContainer>
 </template>
-<style scopred lang="scss">
+<style scoped lang="scss">
 
     @media screen and (max-width: 48em) {
         .contact-text { 

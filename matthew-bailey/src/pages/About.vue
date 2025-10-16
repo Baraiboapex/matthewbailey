@@ -18,11 +18,12 @@
     `;
     const ABOUT_ME_RESUME = [
         {
-            id:0,
+            id:1,
             jobTitle:"Senior Application Developer",
             company:"Stealth Startup",
             yearsActive:"Jul 2024 - Present · 1 yr 2 mos",
             responsibilities:[
+                "Studied AI and machine learning in Fullstack Academy and passed with a 93.07%",
                 "Built and maintained Node.js microservices with Firebase backend and Vue.js frontend",
                 "Deployed scalable application instances using Docker containers",
                 "Implemented CI/CD pipelines with GitHub Actions and Azure Pipelines (YAML)",
@@ -32,7 +33,7 @@
             ],
         },
         {
-            id:1,
+            id:2,
             jobTitle:"Application Developer",
             company:"Dymeng LLC.",
             yearsActive:"May 2022 - Jun 2024 · 2 yrs 2 mos",
@@ -44,7 +45,7 @@
             ],
         },
         {
-            id:2,
+            id:3,
             jobTitle:"Associate Web Developer",
             company:"Bluetree/Tegria",
             yearsActive:"Sep 2020 - Feb 2021 · 6 mos",
@@ -52,12 +53,23 @@
                 "Aided in updating a well-tested, cross-browser, multi-tenant, multi-paged call center intake tool using React.js and C# Web API’s with JSON web tokens while under a tight schedule.",
                 "ON DAY ONE, with my positive attitude and strong passion, I single-handedly decreased the development time of this project by 35% getting the entire app ready for the final round of QA in about 3 weeks."
             ],
+        },
+        {
+            id:0,
+            jobTitle:"Junior Web App Developer",
+            company:"Jacksonville Transportation Authority",
+            yearsActive:"Jul 2018 - April 2020 · 1 yr 10 mos",
+            responsibilities:[
+                "Aided in building a powerful company-wide metrics calculculation web application that was focused on replacing legacy code with a more modern tech stack in React.js and C#. ",
+                "85% of the front-end code was my own handwriting and carefully battle-tested for bugs and edge cases. ",
+                "I was also responsible for an entire UI/UX overhaul as the system matured and used Adobe XD to design High-Fidelity mock-ups for the second version of the application which were praised heavily by the VP of business intelligence.",
+            ],
         }
     ]
 
     const elementAnimationsList = [
         {
-            startPoint:400,
+            startPoint:-400,
             animation:"SLIDE_IN_LEFT",
             animationParams:(parentPos)=>({
                 translateX:parentPos,
@@ -66,7 +78,7 @@
             })
         },
         {
-            startPoint:-400,
+            startPoint:400,
             animation:"SLIDE_IN_RIGHT",
             animationParams:(parentPos)=>({
                 translateX:parentPos,
@@ -75,8 +87,17 @@
             })
         },
         {
+            startPoint:-400,
+            animation:"SLIDE_IN_LEFT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        },
+        {
             startPoint:400,
-            animation:"SLIDE_ID_LEFT",
+            animation:"SLIDE_IN_RIGHT",
             animationParams:(parentPos)=>({
                 translateX:parentPos,
                 duration:2000,

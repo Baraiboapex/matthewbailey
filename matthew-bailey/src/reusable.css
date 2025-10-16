@@ -12,6 +12,22 @@
         linear-gradient(to bottom, #65e6ca, #0d6e89) border-box;
     box-shadow: 0.5rem 0.5rem 1rem 0.5rem rgb(5, 55, 56);
 }
+
+.project-image{
+    max-width:100%;
+    object-fit: cover;
+}
+
+.intro-image{
+    max-width:45em;
+}
+
+.square-image-accent{
+    border-radius:2em;
+    background:
+        linear-gradient(to bottom, #65e6ca, #0d6e89) border-box;
+    box-shadow: 0.5rem 0.5rem 1rem 0.5rem rgb(5, 55, 56);
+}
 /*----IMAGE STYLIZATION COMPONENTS----*/
 
 /*----COLOR CSS----*/

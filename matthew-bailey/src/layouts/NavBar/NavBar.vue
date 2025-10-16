@@ -1,12 +1,14 @@
 <script setup>
     import { RouterLink } from 'vue-router';
-    import { reactive, ref } from 'vue';
+    import { reactive, ref, watch, onMounted} from 'vue';
     import { animate } from 'animejs';
+    import { useRoute } from 'vue-router';
 
     const state = reactive({
       currentSliderPage:""
     });
 
+    const route = useRoute();
     const pageSlider = ref(null);
 
     const home = ref(null);
@@ -43,11 +45,32 @@
       }
     };
 
+    const PAGE_LINK_POSITIONS = {
+      "home":"0px",
+      "about":"89.8828px",
+      "projects":"181.461px",
+      "contact":"285.203px"
+    };
+
     const selectCurrentPage = (event)=>{
       state.currentSliderPage = event.currentTarget.id;
       console.log("ID =>",state.currentSliderPage);
       moveSelectionSliderToPageName();
     };
+
+    watch(
+      ()=>route.path,
+      (newPath,oldPath)=>{
+        console.log(route.path, newPath, route.path === newPath);
+        if(route.path === newPath){
+          const newSetPath = newPath.substring(1,newPath.length);
+          const hasParamId = newSetPath.includes("/") ? newPath.substring(1, newPath.lastIndexOf("/")) : newSetPath;
+          state.currentSliderPage = newSetPath === "/" ? "home" : hasParamId;
+          console.log(state.currentSliderPage, newSetPath);
+          moveSelectionSliderToPageName();
+        }
+      }
+    );
 
 </script>
 <template>

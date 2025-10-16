@@ -25,23 +25,23 @@
 
     //NOTE these are the same projects that are used on the projects page.
     const carouselSlides = ref([
-      {
+        {
             id:1,
-            projectImage:"test1",
-            projectName:"test1",
-            projectDescription:"test1"
+            projectImage:"./images/turnover.jpg",
+            projectName:"Employee Turnover Analyzer",
+            projectDescription:"Employee retention is important! Click below to learn more how I solved this problem using the power of AI and Machine Learning!"
         },
         {
             id:2,
-            projectImage:"test2",
-            projectName:"test2",
-            projectDescription:"test2"
+            projectImage:"./images/wheels-560751_640.jpg",
+            projectName:"Bike Ease Hourly Rental Forecast Machine Learning Pipeline",
+            projectDescription:"Ah, figuring out a way to boost seasonal rental revenue! A not so fun task! Well, AI can help speed this up too! Check it out!"
         },
         {
             id:3,
-            projectImage:"test3",
-            projectName:"test3",
-            projectDescription:"test3"
+            projectImage:"./images/low-customer-satisfaction.jpg",
+            projectName:"Streamlining the Customer Grievance Process",
+            projectDescription:"Routing complaints to the appropriate department shoouldn't be difficult. Check out how I solved it with AI!"
         }
     ]);
 
@@ -63,12 +63,14 @@
       </ParagraphContainer>
       <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
     <div class="row">
-      <div class="col-12 m-0 pt-2 pb-2">
+      <div class="col-12 m-0 pt-2 pb-2 d-flex flex-column justify-content-center text-center">
+            <h1 class="m-5">My Most Recent Projects</h1>
+            <hr class="border border-light"/>
             <Carousel 
               :slides="carouselSlides"
             >
               <template #customItems="{data}">
-                  <button class="btn btn-light" @click="goToProject(data)"> View {{ data.projectName }}</button>
+                  <button class="btn btn-light" @click="goToProject(data)"> View Project </button>
               </template> 
             </Carousel>
         </div>

@@ -29,10 +29,10 @@
             </div>
             <div class="carousel-inner">
                 <div v-for="(slide, index) in props.slides" :class="['carousel-item', { active: INITIAL_ACTIVE_SLIDE === index }]">
-                    <div class="w-100 d-flex justify-content-center align-items-center flex-column p-4 bg-secondary">
-                        <img :src="slide.projectmage"/>
-                        <h3>{{slide.projectName}}</h3>
-                        <p v-if="slide.projectDescription">{{ slide.projectDescription}}</p>
+                    <div class="w-100 d-flex justify-content-center align-items-center flex-column p-4">
+                        <img :src="slide.projectImage" class="intro-image square-image-accent mb-4"/>
+                        <h2>{{slide.projectName}}</h2>
+                        <h4 v-if="slide.projectDescription" class="mb-4">{{ slide.projectDescription}}</h4>
                         <div class="d-flex justify-content-center mb-">
                             <slot name="customItems" :data="slide"></slot>
                         </div>

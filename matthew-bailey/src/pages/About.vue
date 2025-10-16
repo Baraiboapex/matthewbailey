@@ -12,7 +12,7 @@
     const ABOUT_TEXT = `
         Well hello, there! My name is Matthew Bailey! I am a software developer
         with 6 years of experience and currently expanding my horizons in machine
-        machine learning and AI. With my amazing creative problem solving skills, 
+        learning and AI. With my amazing creative problem solving skills, 
         and my ability to learn new tech quickly, I look forward to helping you with
         all of your projects!
     `;

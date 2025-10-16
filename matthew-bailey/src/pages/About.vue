@@ -4,17 +4,11 @@
     import PageContainer from '../components/UI/Reusable/PageContainer/PageContainer.vue';
     import ParagraphContainer from '../components/UI/Reusable/ParagraphContainer.vue';
     import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
-    import ParticleBackground from '../layouts/Backgrounds/ParticleBackground.vue';
-
-    import { BG_PARTICLES_CONFIG } from '../layouts/Backgrounds/particleConfig';
 
     const ABOUT_IMAGE = "./images/owner-image.png"
     const ABOUT_TEXT = `
-        Well hello, there! My name is Matthew Bailey! I am a software developer
-        with 6 years of experience and currently expanding my horizons in machine
-        learning and AI. With my amazing creative problem solving skills, 
-        and my ability to learn new tech quickly, I look forward to helping you with
-        all of your projects!
+        Below is my resume of my most recent work experience! With my diverse array of experience,
+        and my high adaptability, I would be an invaluable asset in any fast-moving environment!
     `;
     const ABOUT_ME_RESUME = [
         {
@@ -118,14 +112,11 @@
         <ParagraphContainer class="p-4 rounded-top">
             <div class="row m-0 p-0">
                 <div class="col-12 m-0 p-0">
-                        <div class="d-flex flex-column justify-content-center w-100 p-2">
-                            <div class="user-image w-100 d-flex align-items-center justify-content-center mt-4 mb-4">
-                                <img height="220" width="220" class="image-accent" :src="state.aboutImage" alt="picture of matt bailey's awesomeness"/>
-                            </div>
-                            <div class="w-100">
-                                <p class="h4">{{ state.aboutText }}</p>
-                            </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center w-100 p-2">
+                        <div class="w-100">
+                            <p class="h4">{{ state.aboutText }}</p>
                         </div>
+                    </div>
                 </div>
             </div>
         </ParagraphContainer>

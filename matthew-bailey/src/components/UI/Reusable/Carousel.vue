@@ -29,22 +29,26 @@
             </div>
             <div class="carousel-inner">
                 <div v-for="(slide, index) in props.slides" :class="['carousel-item', { active: INITIAL_ACTIVE_SLIDE === index }]">
-                    <div class="w-100 d-flex justify-content-center align-items-center flex-column p-4">
-                        <img :src="slide.projectImage" class="intro-image square-image-accent mb-4"/>
-                        <h2>{{slide.projectName}}</h2>
-                        <h4 v-if="slide.projectDescription" class="mb-4">{{ slide.projectDescription}}</h4>
-                        <div class="d-flex justify-content-center mb-">
-                            <slot name="customItems" :data="slide"></slot>
+                    <div class="w-100 d-flex justify-content-center align-items-center flex-column p-4 container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img :src="slide.projectImage" class="intro-image square-image-accent mb-4"/>
+                                <h2 class="mb-4 mt-4">{{slide.projectName}}</h2>
+                                <h4 v-if="slide.projectDescription" class="mb-4">{{ slide.projectDescription}}</h4>
+                                <div class="d-flex justify-content-center mb-">
+                                    <slot name="customItems" :data="slide"></slot>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
+                <span class="carousel-control-prev-icon text-dark bg-dark p-2 border rounded" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon text-dark" aria-hidden="true"></span>
+                <span class="carousel-control-next-icon text-dark bg-dark p-2 border rounded" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>

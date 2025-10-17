@@ -154,7 +154,7 @@ After completing the analysis, I then gave a report of what can be done to incre
             <div class="row m-0">
                 <div class="col-12 m-0 p-2">
                     <div id="myProjectsRef">
-                        <div :style="{height:(route.params.projectId ? '90vh' : 'auto')}" class="row m-0">
+                        <div class="row m-0">
                             <div class="col-12">
                                 <AnimatedList
                                     :elementsToAnimate="state.currentProjects"

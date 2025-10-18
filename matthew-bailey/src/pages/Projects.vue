@@ -18,7 +18,7 @@
             id:1,
             projectImage:"./images/turnover.jpg",
             projectName:"Employee Turnover Analyzer",
-            projectDescription:`So. This is a thing now for me. I decided to upskill in AI and ML by taking an AI bootcamp. Here is one of my projects that I am most proud of that I for the class. I was tasked with creating a machine learning pipeline for analyzing employee turnover at a fictional company and come up with retention policies for their workflow. The task involved a great deal of highly involved data wrangling and feature engineering using the python "pandas" library in order to preprocess the necessary rows and columns before being fed to 3 different machine learning models of which are a "plain-old" logistic regression model, a random forest classifier model, and a gradient boost model. 
+            projectDescription:`I decided to upskill in AI and ML by taking an AI bootcamp. Here is one of my projects that I am most proud of that I for the class. I was tasked with creating a machine learning pipeline for analyzing employee turnover at a fictional company and come up with retention policies for their workflow. The task involved a great deal of highly involved data wrangling and feature engineering using the python "pandas" library in order to preprocess the necessary rows and columns before being fed to 3 different machine learning models of which are a "plain-old" logistic regression model, a random forest classifier model, and a gradient boost model. 
 
 It was also imperative that I utilized data balancing techniques to mitigate the risk of overfitting on the data set by using SMOTE to accentuate the minority classes to get proper results for all 3 models.`,
             projectLink:"https://lnkd.in/e5KfxsKp",
@@ -28,7 +28,7 @@ It was also imperative that I utilized data balancing techniques to mitigate the
             projectImage:"./images/wheels-560751_640.jpg",
             projectName:"Bike Ease Hourly Rental Forecast Machine Learning Pipeline",
             projectDescription:`
-            Here is another showcase project for forecasting the hourly rentals for a bike company. This project also involves a large amount of selecting relevant features and applying scaling techniques to make the data more uniform for consumption by another set of logistic regression models.
+            In this project, I was tasked with creating an hourly rental forcaster for a fictional bike company. This involved selecting relevant features and applying scaling techniques to make the data more uniform for consumption by another set of logistic regression models.
 
 The different logistic regression models include:
 
@@ -37,7 +37,7 @@ Ridge Regression (L2 Regularization)
 Lasso Regression (L1 Regularization)
 Elastic Net Regression
 
-After completing the analysis, I then gave a report of what can be done to increase the rental quantity during certain seasons
+After completing the analysis, I then gave a report of what can be done to increase the rental quantity during certain seasons.
             `,
             projectLink:"https://lnkd.in/ehSPMY-y",
         },
@@ -46,7 +46,7 @@ After completing the analysis, I then gave a report of what can be done to incre
             projectImage:"./images/low-customer-satisfaction.jpg",
             projectName:"Streamlining the Customer Grievance Process",
             projectDescription:`
-                Here is another project that I am proud of. I was tasked with creating a complaint trafficking 
+                For this project, I was tasked with creating a complaint trafficking 
                 pipeline for a fictional bank using feature engineering and a good amount of data wrangling along 
                 with text preprocessing techniques to prepare data to be fed to 2 different models. 
                 The dual-model architecture consists of a balanced random forest classifier in order 

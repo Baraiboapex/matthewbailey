@@ -14,7 +14,7 @@
       Well hello, there! My name is Matthew Bailey! Welcome to my website! 
       (I wrote it myself with Vue.js if you are curious!) 
       I am a software developer with 6 years of experience and currently 
-      expanding my horizons in machine learning and AI. With my amazing 
+      expanding my horizons in machine learning and AI. With my strong 
       creative problem solving skills, and my ability to learn new tech quickly, 
       I look forward to helping you with all of your projects!
     `;

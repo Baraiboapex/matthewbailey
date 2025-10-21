@@ -1,0 +1,2 @@
+1.) On the about page: I need a feature that looks at the current job that I have and updates the date based off of a set
+starting point using day.js.

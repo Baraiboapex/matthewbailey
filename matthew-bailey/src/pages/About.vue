@@ -15,7 +15,7 @@
             id:1,
             jobTitle:"Senior Application Developer",
             company:"Stealth Startup",
-            yearsActive:"Jul 2024 - Present · 1 yr 2 mos",
+            yearsActive:"Jul 2024 - Present · 1 yr 4 mos",
             responsibilities:[
                 "Studied AI and machine learning in Fullstack Academy and passed with a 93.07%",
                 "Built and maintained Node.js microservices with Firebase backend and Vue.js frontend",

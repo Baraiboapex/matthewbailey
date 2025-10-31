@@ -11,12 +11,12 @@
     const router = useRouter();
     const HOME_IMAGE = "./images/owner-image.png"
     const HOME_MESSAGE = `
-      Well hello, there! My name is Matthew Bailey! Welcome to my website! 
-      (I wrote it myself with Vue.js if you are curious!) 
+      Well hello, there! My name is Matthew Bailey!
       I am a software developer with 6 years of experience and currently 
       expanding my horizons in machine learning and AI. With my strong 
       creative problem solving skills, and my ability to learn new tech quickly, 
-      I look forward to helping you with all of your projects!
+      I look forward to helping you achieve all of your busniess goals and delivering 
+      quality products make an impact for your organization.
     `;
 
     const HOME_TITLE = `Hi there!`;

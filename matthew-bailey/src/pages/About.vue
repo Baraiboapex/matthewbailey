@@ -5,11 +5,11 @@
     import ParagraphContainer from '../components/UI/Reusable/ParagraphContainer.vue';
     import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
 
-    const ABOUT_IMAGE = "./images/owner-image.png"
-    const ABOUT_TEXT = `
-        Below is my resume of my most recent work experience! With my diverse array of experience,
-        and my high adaptability, I would be an invaluable asset in any fast-moving environment!
-    `;
+    const ABOUT_IMAGE = "./images/owner-image.png";
+    // const ABOUT_TEXT = `
+    //     Below is my resume of my most recent work experience! With my diverse array of experience,
+    //     and my high adaptability, I would be an invaluable asset in any fast-moving environment!
+    // `;
     const ABOUT_ME_RESUME = [
         {
             id:1,
@@ -78,7 +78,7 @@
     ];
 
     const state = reactive({
-        aboutText:ABOUT_TEXT,
+        // aboutText:ABOUT_TEXT,
         aboutImage:ABOUT_IMAGE,
         aboutResume:ABOUT_ME_RESUME
     });
@@ -90,7 +90,7 @@
 </script>
 <template>
     <PageContainer>
-        <ParagraphContainer class="p-4 rounded-top">
+        <!-- <ParagraphContainer class="p-4 rounded-top">
             <div class="row m-0 p-0">
                 <div class="col-12 m-0 p-0">
                     <div class="d-flex flex-column justify-content-center align-items-center w-100 p-2">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-        </ParagraphContainer>
+        </ParagraphContainer> -->
         <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
             <div class="row m-0">
                 <div class="col-12 m-0 p-0">

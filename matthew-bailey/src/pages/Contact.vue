@@ -4,11 +4,11 @@
     import ParagraphContainer from "../components/UI/Reusable/ParagraphContainer.vue";
     import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
     import { detectDevice } from "../helpers/deviceHelpers";
-import { onMounted } from "vue";
+    import { onMounted } from "vue";
 
     const TAGLINE = `
         Questions? Comments? Drop me an email or give me a call! I can also be reached
-        on linkedin!
+        on linkedin.
     `;
 
     const CONTACT_INFORMATION = [
@@ -54,7 +54,7 @@ import { onMounted } from "vue";
         }
     ];
 
-        const elementAnimationsList = [
+    const elementAnimationsList = [
         {
             startPoint:400,
             animation:"SLIDE_IN_LEFT",
@@ -96,7 +96,7 @@ import { onMounted } from "vue";
 
     onMounted(()=>{
         window.scrollTo(0, 0);
-    })
+    });
 
 </script>
 <template>

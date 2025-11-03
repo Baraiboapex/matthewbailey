@@ -5,16 +5,15 @@
     import Carousel from '../components/UI/Reusable/Carousel.vue';
     import PageContainer from "../components/UI/Reusable/PageContainer/PageContainer.vue";
     import ParagraphContainer from "../components/UI/Reusable/ParagraphContainer.vue";
-    import ParticleBackground from "../layouts/Backgrounds/ParticleBackground.vue";
-    import { BG_PARTICLES_CONFIG } from "../layouts/Backgrounds/particleConfig";
 
     const router = useRouter();
     const HOME_IMAGE = "./images/owner-image.png"
     const HOME_MESSAGE = `
-      Well hello, there! My name is Matthew Bailey!
+      Well hello, there! My name is Matthew Bailey.
       I am a software developer with 6 years of experience and currently 
-      expanding my horizons in machine learning and AI. With my strong 
-      creative problem solving skills, and my ability to learn new tech quickly, 
+      expanding my horizons in machine learning and AI with a strong 
+      focus on specializing in RAG AI technologies.With my strong creative 
+      problem solving skills, and my ability to learn new tech quickly, 
       I look forward to helping you achieve all of your busniess goals and delivering 
       quality products make an impact for your organization.
     `;
@@ -26,6 +25,69 @@
       homeTitle:HOME_TITLE,
       homeImage:HOME_IMAGE
     });
+
+    const skillsList = ref[
+      {
+        id:0,
+        skillName:"HTML",
+        skillLevel:5
+      },
+      {
+        id:0,
+        skillName:"CSS",
+        skillLevel:5
+      },
+      {
+        id:0,
+        skillName:"JavaScript",
+        skillLevel:5
+      },
+      {
+        id:0,
+        skillName:"Python",
+        skillLevel:4
+      },
+      {
+        id:0,
+        skillName:"Vue.js",
+        skillLevel:5
+      },
+      {
+        id:0,
+        skillName:"React.js",
+        skillLevel:4
+      },
+      {
+        id:0,
+        skillName:"Node.js",
+        skillLevel:4
+      },
+      {
+        id:0,
+        skillName:"PostgreSQL",
+        skillLevel:3
+      },
+      {
+        id:0,
+        skillName:"Firebase",
+        skillLevel:3
+      },
+      {
+        id:0,
+        skillName:"Machine Learning",
+        skillLevel:3
+      },
+      {
+        id:0,
+        skillName:"LLMS",
+        skillLevel:3
+      },
+      {
+        id:0,
+        skillName:"Deep Learning",
+        skillLevel:3
+      }
+    ];
 
     //NOTE these are the same projects that are used on the projects page.
     const carouselSlides = ref([

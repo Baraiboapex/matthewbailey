@@ -8,7 +8,6 @@
 
     const route = useRoute();
 
-
     const PROJECTS_LIST = [
         {
             id:1,

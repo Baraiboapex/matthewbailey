@@ -1,11 +1,12 @@
 <script setup>
-    import {reactive, ref} from "vue";
+    import {reactive, ref, onMounted} from "vue";
     import { useRouter } from 'vue-router';
 
     import Carousel from '../components/UI/Reusable/Carousel.vue';
     import PageContainer from "../components/UI/Reusable/PageContainer/PageContainer.vue";
     import ParagraphContainer from "../components/UI/Reusable/ParagraphContainer.vue";
-
+    import AnimatedColumns from "../components/UI/Reusable/AnimatedColumns.vue";
+    
     const router = useRouter();
     const HOME_IMAGE = "./images/owner-image.png"
     const HOME_MESSAGE = `
@@ -18,15 +19,18 @@
       quality products make an impact for your organization.
     `;
 
+    const generateRange = (start, stop, step) => {
+      const arrLength = (stop - start) / step + 1 - 1;
+      const indicies = [];
+      for (let i = 0; i < arrLength; i++) {
+        indicies.push(start + i * step);
+      }
+
+      return indicies;
+    };
+
     const HOME_TITLE = `Hi there!`;
-
-    const state = reactive({
-      homeTagline:HOME_MESSAGE,
-      homeTitle:HOME_TITLE,
-      homeImage:HOME_IMAGE
-    });
-
-    const skillsList = ref[
+    const SKILLS_LIST = [
       {
         id:0,
         skillName:"HTML",
@@ -89,6 +93,35 @@
       }
     ];
 
+    const state = reactive({
+      homeTagline:HOME_MESSAGE,
+      homeTitle:HOME_TITLE,
+      homeImage:HOME_IMAGE,
+      skillsColumns:SKILLS_LIST,
+      renderedColumns:[]
+    });
+
+    const elementAnimationsList = [
+        {
+            startPoint:-400,
+            animation:"SLIDE_IN_RIGHT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        },
+        {
+            startPoint:-400,
+            animation:"SLIDE_IN_RIGHT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos+400,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        }
+    ];
+
     //NOTE these are the same projects that are used on the projects page.
     const carouselSlides = ref([
         {
@@ -110,9 +143,31 @@
             projectDescription:"Routing complaints to the appropriate department shoouldn't be difficult. Check out how I solved it with AI!"
         }
     ]);
-
+  
     const goToProject = (item)=> router.push({name:"Projects", params:{projectId:item.id}});
 
+    const divideUpSkillsLists = ({columnCount, arrayLength, stateValue}) =>{
+      const dividedUpSkillsListValue = Math.floor(arrayLength / columnCount);
+      const columnIndicies = generateRange(0, arrayLength, dividedUpSkillsListValue);
+      
+      const newColumns = [];
+
+      for(let i = 0; i < state.skillsColumns.length; i++){
+        if(columnIndicies.includes(i)){
+          newColumns.push(state.skillsColumns[i]);
+        }
+      }
+
+      state[stateValue] = newColumns;
+    };
+
+    onMounted(()=>{
+      divideUpSkillsLists({
+        columnCount:2, 
+        arrayLength:state.skillsColumns, 
+        stateValue:"renderedColumns"
+      });
+    });
 </script>
 
 <template>
@@ -138,20 +193,37 @@
                 </div>
             </div>
       </ParagraphContainer>
-      <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
-    <div class="row m-0">
-      <div class="col-12 m-0 pt-2 pb-2 d-flex flex-column justify-content-center text-center">
-            <h1 class="m-5">My Most Recent Projects</h1>
-            <hr class="border border-light"/>
-            <Carousel 
-              :slides="carouselSlides"
-            >
-              <template #customItems="{data}">
-                  <button class="btn btn-light" @click="goToProject(data)"> View Project </button>
-              </template> 
-            </Carousel>
+      <ParagraphContainer class="p-4 rounded-top">
+        <div class="row m-0">
+          <div class="row m-0">
+            <div class="col-12">
+                <AnimatedColumns
+                  :elementsToAnimate="columns"
+                  :elementAnimations = "elementAnimationsList"
+                  :canAnimate = "true"
+                >
+                  <template #columnElement="{data}">
+                    
+                  </template>
+                </AnimatedColumns>
+            </div>
+          </div>
         </div>
-      </div>
+      </ParagraphContainer>
+      <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
+        <div class="row m-0">
+          <div class="col-12 m-0 pt-2 pb-2 d-flex flex-column justify-content-center text-center">
+                <h1 class="m-5">My Most Recent Projects</h1>
+                <hr class="border border-light"/>
+                <Carousel 
+                  :slides="carouselSlides"
+                >
+                  <template #customItems="{data}">
+                      <button class="btn btn-light" @click="goToProject(data)"> View Project </button>
+                  </template> 
+                </Carousel>
+            </div>
+          </div>
       </ParagraphContainer>
   </PageContainer>
 </template>

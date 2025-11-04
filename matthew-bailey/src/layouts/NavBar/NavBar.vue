@@ -72,7 +72,7 @@
 </script>
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark blur feather-edges w-100 m-0 fixed-top">
-  <div class="container-fluid">
+  <div class="container">
     <RouterLink class="navbar-brand disabled-link d-flex flex-row align-items-center"  v-slot="{ href, navigate }" to="/">
       <img src="/dist/mpb-logo.svg" height="90" width="90"/>
       &nbsp;

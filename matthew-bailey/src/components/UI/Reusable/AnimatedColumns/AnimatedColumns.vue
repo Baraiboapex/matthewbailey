@@ -22,7 +22,6 @@
     });
 
     const itemRefs = ref({});
-    const scrollContainer = ref(null);
     
     const SUPPORTED_TRANSLATION_UNITS = [
         "px",
@@ -31,12 +30,15 @@
     ];
 
     const setRef = (projectId, item) => {
+
+        console.log(projectId, item);
         itemRefs._value[projectId] = item;
     };
 
     const setElementStartPoint = (element, starterPoint) => {
         try{
-            if(typeof startPoint === "string"){
+            if(typeof starterPoint === "string"){
+                console.log("TEST VAL : ", starterPoint);
                 const unitRegex = /[a-z].*?/g;
                 const foundUnit = startPoint.match(unitRegex)[1];
                 
@@ -49,11 +51,11 @@
                 }
             }
             if(typeof starterPoint === "number"){
+                console.log("TEST VAL : ", starterPoint);
                 element.style.transform = `translateX(${starterPoint+"px"})`;
             }
-            
         }catch(err){
-            throw new Error("Could not set starter units");
+            throw new Error("Could not set starter units", err);
         }
     };
 
@@ -74,7 +76,7 @@
                 
                 setElementStartPoint(el.elementToAnimate, props.elementAnimations[index].startPoint);
 
-                console.log(el.elementToAnimate.style.translate);
+                console.log("EL : ", el.elementToAnimate.style.translate);
                 const getParentContainerBoundingBox = props.parentScrollContainer.getBoundingClientRect();
 
                 const animationObj = CUSTOMIZE_ANIMATIONS({
@@ -91,8 +93,10 @@
     };
 
     const setupScroll = () => {
-        state.elementList.forEach((index, el)=>{
-            const staggeredDelay = index * 100;
+        state.elementList.forEach((el, index)=>{
+            console.log("ELEMENT : ", el);
+            const staggeredDelay = index * 900;
+            console.log(el.elementToAnimate);
             let updatedAnimationParams = {
                 ...el.animationParams,
                 delay:staggeredDelay
@@ -101,7 +105,7 @@
                 alternate: true,
                 autoplay: onScroll(el.elementToAnimate,{
                     container: props.parentScrollContainer,
-                    enter: 'max bottom',
+                    enter: 'min top',
                     leave: 'min top',
                 }),
             };
@@ -116,6 +120,7 @@
     };
 
     onMounted(()=>{
+        console.log(props.elementsToAnimate);
         constructAnimatedColumns();
         nextTick(()=>{
             setupScroll();
@@ -137,9 +142,9 @@
     });
 </script>
 <template>
-    <div class="d-flex flex-row justify-content-center">
+    <div class="d-flex flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-column justify-content-xl-start justify-content-lg-start justify-content-md-center justify-content-sm-center justify-content-center align-items-xl-start align-items-lg-start align-items-md-center align-items-sm-center align-items-center">
         <div class="item-container w-100" v-for="element in props.elementsToAnimate" :key="element.id" :ref="(el)=>setRef(element.id, el)">
-            <slot name="columnElement" :data="element.column">
+            <slot name="columnElement" :data="element.columns">
             </slot>
         </div>
     </div>

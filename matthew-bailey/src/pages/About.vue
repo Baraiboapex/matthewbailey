@@ -89,42 +89,44 @@
 
 </script>
 <template>
-    <PageContainer>
-        <!-- <ParagraphContainer class="p-4 rounded-top">
-            <div class="row m-0 p-0">
-                <div class="col-12 m-0 p-0">
-                    <div class="d-flex flex-column justify-content-center align-items-center w-100 p-2">
-                        <div class="w-100">
-                            <p class="h4">{{ state.aboutText }}</p>
+    <div class="container">
+        <PageContainer>
+            <!-- <ParagraphContainer class="p-4 rounded-top">
+                <div class="row m-0 p-0">
+                    <div class="col-12 m-0 p-0">
+                        <div class="d-flex flex-column justify-content-center align-items-center w-100 p-2">
+                            <div class="w-100">
+                                <p class="h4">{{ state.aboutText }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </ParagraphContainer> -->
-        <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
-            <div class="row m-0">
-                <div class="col-12 m-0 p-0">
-                    <AnimatedList
-                        :elementsToAnimate="state.aboutResume"
-                        :elementAnimations = "elementAnimationsList"
-                        :canAnimate = "true"
-                    >
-                        <template #listElement="{data}">
-                            <div class="d-flex border-bottom mt-4 mb-4 justify-content-center w-100 p-2 flex-column">
-                                <h2>{{ data.jobTitle }}</h2>
-                                <h3>{{ data.company }}</h3>
-                                <h4>{{ data.yearsActive }}</h4>
-                                <br/>
-                                <ul>
-                                    <li v-for="responsibility in data.responsibilities" class="text-align-left">
-                                        {{ responsibility }}
-                                    </li>
-                                </ul>   
-                            </div>
-                        </template>
-                    </AnimatedList>
+            </ParagraphContainer> -->
+            <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="pt2-4 pb-4 rounded-bottom">
+                <div class="row m-0">
+                    <div class="col-12 m-0 p-0">
+                        <AnimatedList
+                            :elementsToAnimate="state.aboutResume"
+                            :elementAnimations = "elementAnimationsList"
+                            :canAnimate = "true"
+                        >
+                            <template #listElement="{data}">
+                                <div class="d-flex border-bottom mt-4 mb-4 justify-content-center w-100 p-2 flex-column">
+                                    <h2>{{ data.jobTitle }}</h2>
+                                    <h3>{{ data.company }}</h3>
+                                    <h4>{{ data.yearsActive }}</h4>
+                                    <br/>
+                                    <ul>
+                                        <li v-for="responsibility in data.responsibilities" class="text-align-left">
+                                            {{ responsibility }}
+                                        </li>
+                                    </ul>   
+                                </div>
+                            </template>
+                        </AnimatedList>
+                    </div>
                 </div>
-            </div>
-        </ParagraphContainer>
-    </PageContainer>
+            </ParagraphContainer>
+        </PageContainer>
+    </div>
 </template>

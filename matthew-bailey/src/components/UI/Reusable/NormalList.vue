@@ -11,15 +11,15 @@
         isOrderdList:Boolean,
     });
 
-    const showList = computed(()=>props.loadingList !== false && props.listItems.length > 0);
-    const showNoListItems = computed(()=>props.loadingList !== false && props.listItems.length < 1);
-    const showListError = computed(()=> props.loadingList !== false && props.listHasError === true);
+    const showList = computed(()=>props.loadingList == false && props.listItems.length > 0);
+    const showNoListItems = computed(()=>props.loadingList == false && props.listItems.length < 1);
+    const showListError = computed(()=> props.loadingList == false && props.listHasError === true);
 
 </script>
 <template>
     <div class="w-100 d-flex flex-row">
-        <div v-if="showList" class="d-flex flex-column flex-align-start justify-content-start">
-            <div v-for="(index, item) in listItems" :key="item.id" class="d-flex flex-row">
+        <div v-if="showList" class="d-flex flex-column flex-align-center justify-content-center w-100">
+            <div v-for="(item, index) in listItems" :key="item.id" class="d-flex flex-row w-100">
                 <div v-if="isOrderdList">{{ index }}.)</div>
                 <div v-if="item[itemNameField]">{{item[itemNameField]}}</div>
                 <slot name="list-content" :data="item"></slot>

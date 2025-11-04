@@ -1,9 +1,16 @@
 <script setup>
-    import {ref, reactive} from "vue";
+    import {ref, reactive, onMounted, onBeforeUnmount, nextTick} from "vue";
     import { animate, onScroll, utils, } from 'animejs';
 
+    import {
+        ANIMATIONS,
+        ALLOWED_ANIMATIONS,
+        CUSTOMIZE_ANIMATIONS,
+        ANIMATION_OBJECT
+    } from "./animatedContainerObjects";
+
     const props = defineProps({
-        elementsToAnimat:Array,
+        elementsToAnimate:Array,
         elementAnimations:Array,
         canAnimate:Boolean,
         parentScrollContainer:Object
@@ -15,7 +22,8 @@
     });
 
     const itemRefs = ref({});
-
+    const scrollContainer = ref(null);
+    
     const SUPPORTED_TRANSLATION_UNITS = [
         "px",
         "em",
@@ -42,7 +50,6 @@
             }
             if(typeof starterPoint === "number"){
                 element.style.transform = `translateX(${starterPoint+"px"})`;
-                console.log(element.style);
             }
             
         }catch(err){
@@ -58,6 +65,8 @@
             const element = ANIMATION_OBJECT;
             const buildElementsToAnimate = [];
 
+            console.log("TEST ==> ", props.elementsToAnimate);
+
             for(const [index, item] of props.elementsToAnimate.entries()){
                 const el = {...element};
                 el.elementData = item;
@@ -66,7 +75,7 @@
                 setElementStartPoint(el.elementToAnimate, props.elementAnimations[index].startPoint);
 
                 console.log(el.elementToAnimate.style.translate);
-                const getParentContainerBoundingBox = parentScrollContainer.value.getBoundingClientRect();
+                const getParentContainerBoundingBox = props.parentScrollContainer.getBoundingClientRect();
 
                 const animationObj = CUSTOMIZE_ANIMATIONS({
                     animationsObject:ALLOWED_ANIMATIONS,
@@ -83,7 +92,7 @@
 
     const setupScroll = () => {
         state.elementList.forEach((index, el)=>{
-            const staggeredDelay = index * baseDelay;
+            const staggeredDelay = index * 100;
             let updatedAnimationParams = {
                 ...el.animationParams,
                 delay:staggeredDelay
@@ -91,7 +100,7 @@
             let animationObject = {
                 alternate: true,
                 autoplay: onScroll(el.elementToAnimate,{
-                    container: parentScrollContainer.value,
+                    container: props.parentScrollContainer,
                     enter: 'max bottom',
                     leave: 'min top',
                 }),
@@ -128,9 +137,9 @@
     });
 </script>
 <template>
-    <div class="d-flex flex-row justify-content-start">
+    <div class="d-flex flex-row justify-content-center">
         <div class="item-container w-100" v-for="element in props.elementsToAnimate" :key="element.id" :ref="(el)=>setRef(element.id, el)">
-            <slot name="columnElement" :data="element">
+            <slot name="columnElement" :data="element.column">
             </slot>
         </div>
     </div>

@@ -10,12 +10,10 @@
     onMounted(()=>{
         try{
             nextTick(()=>{
-                console.log("TEST");
                 if(window.particlesJS){
                     window.particlesJS(bg.value.id, props.particlesConfig);
                     setTimeout(() => {
                     const canvas = bg.value.querySelector('canvas');
-                    console.log(canvas);
                     if (canvas) {
                         canvas.style.width = '100vw';
                         canvas.style.height = '100vh';
@@ -32,7 +30,6 @@
                 }
                 
             });
-            console.log("TEST");
             particlesJS("particleBackground",props.particleConfig);
         }catch(err){
             console.log(err);

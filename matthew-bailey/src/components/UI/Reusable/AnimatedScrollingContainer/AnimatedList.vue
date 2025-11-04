@@ -31,7 +31,7 @@
         "px",
         "em",
         "rem"
-    ]
+    ];
 
     const setElementStartPoint = (element, starterPoint) => {
         try{
@@ -49,7 +49,6 @@
             }
             if(typeof starterPoint === "number"){
                 element.style.transform = `translateX(${starterPoint+"px"})`;
-                console.log(element.style);
             }
             
         }catch(err){
@@ -58,7 +57,6 @@
     };
 
     const constructScrollableList = async() => {
-        console.log("CAN ANIMATE : ", props.canAnimate)
         if(props.canAnimate){
             await nextTick();
 
@@ -72,7 +70,6 @@
                 
                 setElementStartPoint(el.elementToAnimate, props.elementAnimations[index].startPoint);
 
-                console.log(el.elementToAnimate.style.translate);
                 const getParentContainerBoundingBox = scrollContainer.value.getBoundingClientRect();
 
                 const animationObj = CUSTOMIZE_ANIMATIONS({

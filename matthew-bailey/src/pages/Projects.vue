@@ -50,6 +50,21 @@ After completing the analysis, I then gave a report of what can be done to incre
                 topic modeling and perhaps custom keywords to further increase the accuracy of the severity 
                 predictions.`,
             projectLink:"https://github.com/Baraiboapex/Streamlining-the-Customer-Grievance-Process"
+        },
+        {
+            id:4,
+            projectImage:"./images/jax-tides-image.png",
+            projectName:"Jax Tides",
+            projectDescription:`
+                A while ago, I built a nice little legacy react application that involved having to load data 
+                from an external source (the NOAA tides preditction site) and display it in a convenient
+                little application to easily get the readout for the future tidal information. However, 
+                acquiring this information was no easy task. I had to deploy a node.js proxy server in order to 
+                fix a CORS issue with loading the data from an external source. I then had to perform heavy data
+                cleansing to display the data in an easy-to-read format. It was a great first stepping stone into
+                what I had to deal with when workin with data cleansing for machine learning!
+            `,
+            projectLink:"https://baraiboapex.github.io/jax-tides/"
         }
     ];
 
@@ -77,7 +92,17 @@ After completing the analysis, I then gave a report of what can be done to incre
         {
             id:3,
             startPoint:400,
-            animation:"SLIDE_ID_LEFT",
+            animation:"SLIDE_IN_LEFT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            })
+        },
+        {
+            id:3,
+            startPoint:-400,
+            animation:"SLIDE_IN_RIGHT",
             animationParams:(parentPos)=>({
                 translateX:parentPos,
                 duration:2000,
@@ -92,10 +117,8 @@ After completing the analysis, I then gave a report of what can be done to incre
     });
 
     const selectProject = (projectId) => {
-        console.log(projectId);
         const selectedProject = state.currentProjects.filter(item => item.id === parseInt(projectId));
         const selectedProjectAnimations = state.elementAnimationsList.filter(item => item.id === parseInt(projectId));
-        console.log(state.currentProjects, state.elementAnimationsList, selectedProject, selectedProjectAnimations);
         state.currentProjects = selectedProject;
         state.elementAnimationsList.value = selectedProjectAnimations;
     };

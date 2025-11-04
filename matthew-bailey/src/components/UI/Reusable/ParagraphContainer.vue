@@ -16,7 +16,6 @@
         try{
             if(props.styles){
                 Object.keys(props.styles).forEach((style)=>{
-                    console.log(ALLOWED_STYLE_PROPS, style);
                     if(ALLOWED_STYLE_PROPS.includes(style)){
                         newStyles[style] = props.styles[style];
                     }else{
@@ -25,7 +24,6 @@
                         throw err;
                     }
                 });
-                console.log(newStyles);
                 return newStyles;
             }else{
                 return defaultStyles

@@ -6,7 +6,7 @@
 </script>
 <template>
     <div style="width:80px;" class="d-flex flex-row border rounded border border-light">
-        <h1 v-for="_ in barLevel" class="bg-light" style="margin:0 0.02em 0 0.02em;">
+        <h1 :style="{color:barColor}" v-for="_ in barLevel" class="bg-light" style="margin:0 0.02em 0 0.02em;">
             <svg xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"

@@ -2,7 +2,6 @@
     import {computed} from "vue";
 
     import ListLoadStatus from "./ListStatuses/ListLoadStatus.vue";
-import ListLoadStatus from "./ListStatuses/ListLoadStatus.vue";
 
     const props = defineProps({
         listItems:Array,
@@ -12,9 +11,9 @@ import ListLoadStatus from "./ListStatuses/ListLoadStatus.vue";
         isOrderdList:Boolean,
     });
 
-    const showList = computed(()=>loadingList !== false && listItems.length > 0);
-    const showNoListItems = computed(()=>loadingList !== false && listItems.length < 1);
-    const showListError = computed(()=> loadingList !== false && listHasError === true);
+    const showList = computed(()=>props.loadingList !== false && props.listItems.length > 0);
+    const showNoListItems = computed(()=>props.loadingList !== false && props.listItems.length < 1);
+    const showListError = computed(()=> props.loadingList !== false && props.listHasError === true);
 
 </script>
 <template>
@@ -33,7 +32,7 @@ import ListLoadStatus from "./ListStatuses/ListLoadStatus.vue";
             alertTitle="No data was found"
             :showAlert:="showNoListItems"
         >
-            <template list-logo>
+            <template #list-logo>
                 <h1>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-slash-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -49,7 +48,7 @@ import ListLoadStatus from "./ListStatuses/ListLoadStatus.vue";
             alertTitle="Something went wrong while loading the list data"
             :showAlert:="showListError"
         >
-            <template list-logo>
+            <template #list-logo>
                 <h1>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
                         <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>

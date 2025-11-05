@@ -201,8 +201,8 @@
 </script>
 
 <template>
-    <div class="row">
-      <div ref="scrollContainer" id="scrollContainer" class="col-12">
+    <div ref="scrollContainer" id="scrollContainer" class="row">
+      <div class="col-12">
         <PageContainer>
             <ParagraphContainer class="p-4 rounded-top">
               <div class="row m-0 p-0">

@@ -101,23 +101,28 @@
     onMounted(()=>{
         listIsVisible.value = false;
         const dummy = { scroll: 0 };
-        animate(dummy,{
-            targets: dummy,
-            scroll: 0,
-            duration: 700,
-            easing: 'easeInOutQuad',
-            update: () => {
-                window.scrollTo(0, dummy.scroll);
-            },
-            complete: () => {
-                if (contactList.value) {
-                    listIsVisible.value = true;
-                    setTimeout(()=>{
-                        contactList.value.constructListAnimations();
-                    },400);
+        if(window.scrollY > 0){
+            animate(dummy,{
+                targets: dummy,
+                scroll: 0,
+                duration: 700,
+                easing: 'easeInOutQuad',
+                update: () => {
+                    window.scrollTo(0, dummy.scroll);
+                },
+                complete: () => {
+                    if (contactList.value) {
+                        listIsVisible.value = true;
+                        setTimeout(()=>{
+                            contactList.value.constructListAnimations();
+                        },400);
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            listIsVisible.value = true;
+            contactList.value.constructListAnimations();
+        }
     });
 
 </script>

@@ -83,23 +83,28 @@
     onMounted(()=>{
         listIsVisible.value = false;
         const dummy = { scroll: 0 };
-        animate(dummy,{
-            targets: dummy,
-            scroll: 0,
-            duration: 700,
-            easing: 'easeInOutQuad',
-            update: () => {
-                window.scrollTo(0, dummy.scroll);
-            },
-            complete: () => {
-                if (aboutList.value) {
-                    listIsVisible.value = true;
-                    setTimeout(()=>{
-                        aboutList.value.constructListAnimations();
-                    },400);
+        if(window.scrollY > 0){
+            animate(dummy,{
+                targets: dummy,
+                scroll: 0,
+                duration: 700,
+                easing: 'easeInOutQuad',
+                update: () => {
+                    window.scrollTo(0, dummy.scroll);
+                },
+                complete: () => {
+                    if (aboutList.value) {
+                        listIsVisible.value = true;
+                        setTimeout(()=>{
+                            aboutList.value.constructListAnimations();
+                        },100);
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            listIsVisible.value = true;
+            aboutList.value.constructListAnimations();
+        }
     });
 
 </script>

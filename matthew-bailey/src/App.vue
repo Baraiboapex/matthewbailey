@@ -7,7 +7,7 @@
 <template>
   <div id="app" class="container-fluid p-0">
     <ParticleBackground :particles-config="BG_PARTICLES_CONFIG">
-      <div class="container-fluid p-0">
+      <div class="container p-0">
         <NavBar/>
         <RouterView/>
       </div>

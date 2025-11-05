@@ -17,7 +17,7 @@ body{
 
 /*----PAGE COMPONENTS CSS----*/
 .nav{
-    background-color: transparent !important;
+    background-color: rgba(185, 185, 185, 0.2) !important;
 }
 /*----PAGE COMPONENTS CSS----*/
 #app{

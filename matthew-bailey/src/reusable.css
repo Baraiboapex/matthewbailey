@@ -2,6 +2,7 @@
 .blur{
     backdrop-filter:blur(1em);
     -webkit-backdrop-filter:blur(1em);
+    background-color: rgba(2, 83, 60, 0.5);
 }
 /*----DIVIDERS STYLIZATION COMPONENTS----*/
 

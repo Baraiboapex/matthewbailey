@@ -201,7 +201,6 @@
 </script>
 
 <template>
-  <div class="container">
     <div class="row">
       <div ref="scrollContainer" id="scrollContainer" class="col-12">
         <PageContainer>
@@ -281,6 +280,5 @@
         </PageContainer>
       </div>
     </div>
-  </div>
 </template>
 

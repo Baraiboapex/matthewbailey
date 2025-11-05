@@ -119,8 +119,14 @@
         });
     };
 
+    const constructAnimatedColumn = () => {
+        constructAnimatedColumns();
+        nextTick(()=>{
+            setupScroll();
+        });
+    }
+
     onMounted(()=>{
-        console.log(props.elementsToAnimate);
         constructAnimatedColumns();
         nextTick(()=>{
             setupScroll();

@@ -162,7 +162,7 @@
     background-color: aliceblue;
     border-bottom:0.1rem solid white;
     margin:0.1em 1.5em 0 1.5em;
-  }
+  } 
   .navbar-toggler {
     border: none;
     box-shadow: none; /* Optional: removes the focus ring */

@@ -12,7 +12,8 @@
     const props = defineProps({
         elementsToAnimate:Array,
         elementAnimations:Array,
-        canAnimate:Boolean
+        canAnimate:Boolean,
+        buildAnimationsOnMount:Boolean
     });
 
     const state = reactive({
@@ -106,11 +107,17 @@
         });
     };
     
-    onMounted(()=>{
+    const constructListAnimations = () =>{
         constructScrollableList();
         nextTick(()=>{
             setupScroll();
         });
+    }
+
+    onMounted(()=>{
+        if(props.buildAnimationsOnMount){
+            constructListAnimationsAnimations();
+        }
     });
 
     onBeforeUnmount(()=>{
@@ -125,6 +132,10 @@
                 itemRefs.value = {};
             }
         }
+    });
+
+    defineExpose({
+        constructListAnimations
     });
 </script>
 <template>

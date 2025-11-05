@@ -1,12 +1,14 @@
 <script setup>
-    import {reactive, onMounted, watch} from "vue";
+    import {reactive, onMounted, watch, ref} from "vue";
     import { useRoute } from 'vue-router';
-    
+    import {animate} from 'animejs';
     import PageContainer from "../components/UI/Reusable/PageContainer/PageContainer.vue";
     import ParagraphContainer from "../components/UI/Reusable/ParagraphContainer.vue";
     import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
 
     const route = useRoute();
+    const projectsList = ref(null); 
+    const listIsVisible = ref(false);
 
     const PROJECTS_LIST = [
         {
@@ -14,7 +16,6 @@
             projectImage:"./images/turnover.jpg",
             projectName:"Employee Turnover Analyzer",
             projectDescription:`I decided to upskill in AI and ML by taking an AI bootcamp. Here is one of my projects that I am most proud of that I for the class. I was tasked with creating a machine learning pipeline for analyzing employee turnover at a fictional company and come up with retention policies for their workflow. The task involved a great deal of highly involved data wrangling and feature engineering using the python "pandas" library in order to preprocess the necessary rows and columns before being fed to 3 different machine learning models of which are a "plain-old" logistic regression model, a random forest classifier model, and a gradient boost model. 
-
 It was also imperative that I utilized data balancing techniques to mitigate the risk of overfitting on the data set by using SMOTE to accentuate the minority classes to get proper results for all 3 models.`,
             projectLink:"https://github.com/Baraiboapex/Employee-Turnover-Analyzer",
         },
@@ -152,51 +153,67 @@ After completing the analysis, I then gave a report of what can be done to incre
     );
 
     onMounted(()=>{
-        if(route.params.projectId){
-            selectProject(route.params.projectId);
-            scrollToSelectedProject(route.params.projectId);
-        }
+        listIsVisible.value = false;
+        const dummy = { scroll: 0 };
+        animate(dummy,{
+            targets: dummy,
+            scroll: 0,
+            duration: 700,
+            easing: 'easeInOutQuad',
+            update: () => {
+                window.scrollTo(0, dummy.scroll);
+            },
+            complete: () => {
+                if (projectsList.value) {
+                    listIsVisible.value = true;
+                    setTimeout(()=>{
+                        projectsList.value.constructListAnimations();
+                    },400);
+                }
+            }
+        });
     });
 </script>
 <template>
-    <div class="container">
-        <PageContainer>
-            <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="rounded-bottom">
-                <div class="row m-0">
-                    <div class="col-12 m-0 p-2">
-                        <div id="myProjectsRef">
-                            <div class="row m-0">
-                                <div class="col-12">
-                                    <AnimatedList
-                                        :elementsToAnimate="state.currentProjects"
-                                        :elementAnimations = "state.elementAnimationsList"
-                                        :canAnimate = "!route.params.projectId"
-                                    >
-                                        <template #listElement="{data}">
-                                            <div class="flex-fill border-bottom p-2">
-                                                <div class="row mt-4 mb-4">
-                                                    <div class="col-lg-6">
-                                                        <img :src="data.projectImage" class="project-image square-image-accent p-2"/>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mt-3 d-flex flex-column flex-fill">
-                                                            <h2>{{ data.projectName }}</h2>
-                                                            <p>{{ data.projectDescription }}</p>
-                                                            <a class="btn btn btn-light w-50" :href="data.projectLink">
-                                                                View Project
-                                                            </a>
-                                                        </div>
+    <PageContainer>
+        <ParagraphContainer :styles="{backgroundColor:'rgb(8, 71, 64, 0.2)'}" class="rounded-bottom">
+            <div class="row m-0">
+                <div class="col-12 m-0 p-2">
+                    <div id="myProjectsRef">
+                        <div class="row m-0">
+                            <div class="col-12">
+                                <AnimatedList
+                                    v-show="listIsVisible"
+                                    ref="projectsList"
+                                    :elementsToAnimate="state.currentProjects"
+                                    :elementAnimations = "state.elementAnimationsList"
+                                    :canAnimate = "!route.params.projectId"
+                                    :buildAnimationsOnMount="false"
+                                >
+                                    <template #listElement="{data}">
+                                        <div class="flex-fill border-bottom p-2">
+                                            <div class="row mt-4 mb-4">
+                                                <div class="col-lg-6">
+                                                    <img :src="data.projectImage" class="project-image square-image-accent p-2"/>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mt-3 d-flex flex-column flex-fill">
+                                                        <h2>{{ data.projectName }}</h2>
+                                                        <p>{{ data.projectDescription }}</p>
+                                                        <a class="btn btn btn-light w-50" :href="data.projectLink">
+                                                            View Project
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </template>
-                                    </AnimatedList>
-                                </div>
+                                        </div>
+                                    </template>
+                                </AnimatedList>
                             </div>
                         </div>
                     </div>
                 </div>
-            </ParagraphContainer>
-        </PageContainer>
-    </div>
+            </div>
+        </ParagraphContainer>
+    </PageContainer>
 </template>

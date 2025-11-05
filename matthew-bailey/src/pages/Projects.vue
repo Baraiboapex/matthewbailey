@@ -155,27 +155,32 @@ After completing the analysis, I then gave a report of what can be done to incre
     onMounted(()=>{
         listIsVisible.value = false;
         const dummy = { scroll: 0 };
-        if(window.scrollY > 0){
-            animate(dummy,{
-                targets: dummy,
-                scroll: 0,
-                duration: 700,
-                easing: 'easeInOutQuad',
-                update: () => {
-                    window.scrollTo(0, dummy.scroll);
-                },
-                complete: () => {
-                    if (projectsList.value) {
-                        listIsVisible.value = true;
-                        setTimeout(()=>{
-                            projectsList.value.constructListAnimations();
-                        },400);
-                    }
-                }
-            });
+        if(route.params.projectId){
+            selectProject(route.params.projectId);
+            scrollToSelectedProject(route.params.projectId);
         }else{
-            listIsVisible.value = true;
-            projectsList.value.constructListAnimations();
+            if(window.scrollY > 0){
+                animate(dummy,{
+                    targets: dummy,
+                    scroll: 0,
+                    duration: 700,
+                    easing: 'easeInOutQuad',
+                    update: () => {
+                        window.scrollTo(0, dummy.scroll);
+                    },
+                    complete: () => {
+                        if (projectsList.value) {
+                            listIsVisible.value = true;
+                            setTimeout(()=>{
+                                projectsList.value.constructListAnimations();
+                            },400);
+                        }
+                    }
+                });
+            }else{
+                listIsVisible.value = true;
+                projectsList.value.constructListAnimations();
+            }
         }
     });
 </script>

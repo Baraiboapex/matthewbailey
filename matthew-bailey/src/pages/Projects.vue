@@ -129,20 +129,6 @@ After completing the analysis, I then gave a report of what can be done to incre
         state.elementAnimationsList = elementAnimationsList;
     }
 
-    const scrollToSelectedProject = (projectId) => {
-        const incommingId = route.query.projectId;
-
-        if(incommingId){
-            const parentEl = myProjectsRef;
-            const childElToScrollTo = projectRefs.value[incommingId];
-
-            parentEl.scrollTo({
-                top:childElToScrollTo.offsetTop,
-                behavior:"auto"
-            });
-        }
-    };
-
     watch(
         () => route.params.projectId,
         (newId, oldId) => {
@@ -157,7 +143,6 @@ After completing the analysis, I then gave a report of what can be done to incre
         const dummy = { scroll: 0 };
         if(route.params.projectId){
             selectProject(route.params.projectId);
-            scrollToSelectedProject(route.params.projectId);
         }else{
             if(window.scrollY > 0){
                 animate(dummy,{

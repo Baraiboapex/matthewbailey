@@ -18,6 +18,7 @@
             projectDescription:`I decided to upskill in AI and ML by taking an AI bootcamp. Here is one of my projects that I am most proud of that I for the class. I was tasked with creating a machine learning pipeline for analyzing employee turnover at a fictional company and come up with retention policies for their workflow. The task involved a great deal of highly involved data wrangling and feature engineering using the python "pandas" library in order to preprocess the necessary rows and columns before being fed to 3 different machine learning models of which are a "plain-old" logistic regression model, a random forest classifier model, and a gradient boost model. 
 It was also imperative that I utilized data balancing techniques to mitigate the risk of overfitting on the data set by using SMOTE to accentuate the minority classes to get proper results for all 3 models.`,
             projectLink:"https://github.com/Baraiboapex/Employee-Turnover-Analyzer",
+            requestToView:false
         },
         {
             id:2,
@@ -36,6 +37,7 @@ Elastic Net Regression
 After completing the analysis, I then gave a report of what can be done to increase the rental quantity during certain seasons.
             `,
             projectLink:"https://github.com/Baraiboapex/Bike-Ease-Hourly-Rental-Forecast-Machine-Learning-Pipeline",
+            requestToView:false
         },
         {
             id:3,
@@ -50,7 +52,8 @@ After completing the analysis, I then gave a report of what can be done to incre
                 determine the "severity" of the complaint, which can then be modified later to include both 
                 topic modeling and perhaps custom keywords to further increase the accuracy of the severity 
                 predictions.`,
-            projectLink:"https://github.com/Baraiboapex/Streamlining-the-Customer-Grievance-Process"
+            projectLink:"https://github.com/Baraiboapex/Streamlining-the-Customer-Grievance-Process",
+            requestToView:false
         },
         {
             id:4,
@@ -65,8 +68,17 @@ After completing the analysis, I then gave a report of what can be done to incre
                 cleansing to display the data in an easy-to-read format. It was a great first stepping stone into
                 what I had to deal with when workin with data cleansing for machine learning!
             `,
-            projectLink:"https://baraiboapex.github.io/jax-tides/"
-        }
+            projectLink:"https://baraiboapex.github.io/jax-tides/",
+            requestToView:false
+        },
+        {
+            id:5,
+            projectImage:"./images/jax-tides-image.png",
+            projectName:"Rag AI Demo",
+            projectDescription:`
+            `,
+            requestToView:true
+        },
     ];
 
     const elementAnimationsList = [
@@ -78,7 +90,8 @@ After completing the analysis, I then gave a report of what can be done to incre
                 translateX:parentPos,
                 duration:2000,
                 opacity: [0, 1],
-            })
+            }),
+            requestToView:false
         },
         {
             id:2,
@@ -88,7 +101,8 @@ After completing the analysis, I then gave a report of what can be done to incre
                 translateX:parentPos,
                 duration:2000,
                 opacity: [0, 1],
-            })
+            }),
+            requestToView:false
         },
         {
             id:3,
@@ -98,7 +112,8 @@ After completing the analysis, I then gave a report of what can be done to incre
                 translateX:parentPos,
                 duration:2000,
                 opacity: [0, 1],
-            })
+            }),
+            requestToView:false
         },
         {
             id:3,
@@ -108,7 +123,8 @@ After completing the analysis, I then gave a report of what can be done to incre
                 translateX:parentPos,
                 duration:2000,
                 opacity: [0, 1],
-            })
+            }),
+            
         },
     ];
 
@@ -127,6 +143,10 @@ After completing the analysis, I then gave a report of what can be done to incre
     const resetProjectSelection = ()=>{
         state.currentProjects = PROJECTS_LIST;
         state.elementAnimationsList = elementAnimationsList;
+    }
+
+    const navigateToRequestToViewPage = () =>{
+        //go to navigate to request to view page here.
     }
 
     const scrollToSelectedProject = (projectId) => {
@@ -210,8 +230,11 @@ After completing the analysis, I then gave a report of what can be done to incre
                                                     <div class="mt-3 d-flex flex-column flex-fill">
                                                         <h2>{{ data.projectName }}</h2>
                                                         <p>{{ data.projectDescription }}</p>
-                                                        <a class="btn btn btn-light w-50" :href="data.projectLink">
+                                                        <a v-show="!data.requestToView" class="btn btn btn-light w-50" :href="data.projectLink">
                                                             View Project
+                                                        </a>
+                                                        <a v-show="data.requestToView" class="btn btn btn-light w-50" :href="data.projectLink">
+                                                            Request To View Project
                                                         </a>
                                                     </div>
                                                 </div>

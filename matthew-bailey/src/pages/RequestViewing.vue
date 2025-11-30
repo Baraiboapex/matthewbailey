@@ -117,51 +117,50 @@
     const sendViewRequest = async () => {
         return new Promise((resolve, reject)=>{
             try{
-            console.log("TEST");
-        const RECIPIENT_NUMBER = "+19043090551";
-        const API_KEY = "47591a94-70b0-4df9-b618-6548af827011";
-        const DEVICE_ID = "68d948c5ceb77880de88f276";
-        const API_URL = `https://api.textbee.dev/api/v1/gateway/devices/${DEVICE_ID}/send-sms`;
-        const REQUEST_FORM = viewRequestForm
-        const MESSAGE_TEXT = `
-            Message from: ${REQUEST_FORM.requesterFirstName} ${REQUEST_FORM.requesterLastName}
-            Email: ${REQUEST_FORM.requesterEmail}
-            Requester Company: ${REQUEST_FORM.requesterEmail}
-            Requested Project To View: ${REQUEST_FORM.requesterProject}
+                console.log("TEST");
+                const RECIPIENT_NUMBER = import.meta.env.RECIPIENT_NUMBER;
+                const API_KEY = import.meta.env.API_KEY;
+                const API_URL = import.meta.env.API_URL;
+                const REQUEST_FORM = viewRequestForm
+                const MESSAGE_TEXT = `
+                    Message from: ${REQUEST_FORM.requesterFirstName} ${REQUEST_FORM.requesterLastName}
+                    Email: ${REQUEST_FORM.requesterEmail}
+                    Requester Company: ${REQUEST_FORM.requesterEmail}
+                    Requested Project To View: ${REQUEST_FORM.requesterProject}
 
-            Message: 
+                    Message: 
 
-            Hi, Matthew!
+                    Hi, Matthew!
 
-            ${REQUEST_FORM.requesterMessage}
-                    `; 
+                    ${REQUEST_FORM.requesterMessage}
+                `; 
 
-                    fetch(API_URL, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "x-api-key": API_KEY
-                        },
-                        body: JSON.stringify({
-                            recipients: [RECIPIENT_NUMBER],
-                            message: MESSAGE_TEXT
-                        })
+                fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-api-key": API_KEY
+                    },
+                    body: JSON.stringify({
+                        recipients: [RECIPIENT_NUMBER],
+                        message: MESSAGE_TEXT
                     })
-                        .then((response) => {
+                })
+                    .then((response) => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
                         }
                         return response.json();
-                        })
-                        .then((data) => {
+                    })
+                    .then((data) => {
                         resolve("Message sent successfully!");
-                        })
-                        .catch((error) => {
+                    })
+                    .catch((error) => {
                         console.error("Error sending SMS via TextBee:", error);
-                        });
-                    }catch(err){
-                        reject("Could not submit form : "+ err);
-                    }
+                    });
+            }catch(err){
+                reject("Could not submit form : "+ err);
+            }
         });
     };
 

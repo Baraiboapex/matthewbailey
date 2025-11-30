@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "animejs": "^4.2.2",
+    "dotenv": "^17.2.3",
     "react-device-detect": "^2.2.3",
     "sass": "^1.90.0",
     "vue": "^3.5.18",

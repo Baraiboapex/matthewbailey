@@ -1,12 +1,13 @@
 <script setup>
     import {reactive, onMounted, watch, ref} from "vue";
-    import { useRoute } from 'vue-router';
+    import { useRoute, useRouter } from 'vue-router';
     import {animate} from 'animejs';
     import PageContainer from "../components/UI/Reusable/PageContainer/PageContainer.vue";
     import ParagraphContainer from "../components/UI/Reusable/ParagraphContainer.vue";
     import AnimatedList from "../components/UI/Reusable/AnimatedScrollingContainer/AnimatedList.vue";
 
     const route = useRoute();
+    const router = useRouter();
     const projectsList = ref(null); 
     const listIsVisible = ref(false);
 
@@ -76,6 +77,11 @@ After completing the analysis, I then gave a report of what can be done to incre
             projectImage:"./images/jax-tides-image.png",
             projectName:"Rag AI Demo",
             projectDescription:`
+            This was my first attempt at deploying and building an AI project using a docker containerized application
+            and runpod to host said container. It uses a sample legal contract that I pulled off of google 
+            to be read by a heavily quantized microsoft phi 3 huggingface model, of which works in tandem with 
+            langchain's RAG AI library to tokenize the necessary document and retrieve the relevant information asked for by a user 
+            via a simple "text chat" interface.
             `,
             requestToView:true
         },
@@ -126,6 +132,17 @@ After completing the analysis, I then gave a report of what can be done to incre
             }),
             
         },
+        {
+            id:3,
+            startPoint:-400,
+            animation:"SLIDE_IN_LEFT",
+            animationParams:(parentPos)=>({
+                translateX:parentPos,
+                duration:2000,
+                opacity: [0, 1],
+            }),
+            
+        },
     ];
 
     const state = reactive({
@@ -145,23 +162,7 @@ After completing the analysis, I then gave a report of what can be done to incre
         state.elementAnimationsList = elementAnimationsList;
     }
 
-    const navigateToRequestToViewPage = () =>{
-        //go to navigate to request to view page here.
-    }
-
-    const scrollToSelectedProject = (projectId) => {
-        const incommingId = route.query.projectId;
-
-        if(incommingId){
-            const parentEl = myProjectsRef;
-            const childElToScrollTo = projectRefs.value[incommingId];
-
-            parentEl.scrollTo({
-                top:childElToScrollTo.offsetTop,
-                behavior:"auto"
-            });
-        }
-    };
+    const navigateToRequestToViewPage = (item) => router.push({name:"RequestProjectView", query:{projectName:"\""+item.projectName+"\""}})
 
     watch(
         () => route.params.projectId,
@@ -232,9 +233,9 @@ After completing the analysis, I then gave a report of what can be done to incre
                                                         <a v-show="!data.requestToView" class="btn btn btn-light w-50" :href="data.projectLink">
                                                             View Project
                                                         </a>
-                                                        <a v-show="data.requestToView" class="btn btn btn-light w-50" :href="data.projectLink">
+                                                        <button v-show="data.requestToView" class="btn btn btn-light w-50" @click="navigateToRequestToViewPage(data)">
                                                             Request To View Project
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

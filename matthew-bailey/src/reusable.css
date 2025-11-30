@@ -10,6 +10,7 @@
 .scroll-container{
     height:auto;
 }
+
 .image-accent{
     border-radius:100%;
     background:
@@ -26,15 +27,43 @@
     max-width:45em;
 }
 
+.alert{
+    font-weight: bold;
+}
+
+.alert.alert-success{
+    background-color: #65e6ca;
+}
+
 .square-image-accent{
     border-radius:2em;
-    background:
-        linear-gradient(to bottom, #65e6ca, #0d6e89) border-box;
+    background:linear-gradient(to bottom, #65e6ca, #0d6e89) border-box;
     box-shadow: 0.5rem 0.5rem 1rem 0.5rem rgb(5, 55, 56);
 }
 
+.not-valid{
+    border:0.2em solid rgb(173, 0, 0);
+    background-color:#ffa1a1;
+}
+
+.validator{
+    display: block;
+    background-color: rgb(173, 0, 0);
+    color:rgb(255, 255, 255);
+    font-size:0.8em;
+    padding:0.3rem;
+    border-radius: 0.2em;
+}
+
 .site-form{
-    /*FORM STYLES GO HERE*/
+    padding: 1em;
+    background-color:#0d6e89;
+}
+
+.loading-sign{
+    padding:2em;
+    background-color: #0d6e89;
+    border-radius: 0.5em;
 }
 
 @media (max-width: 768px) {

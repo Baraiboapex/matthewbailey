@@ -16,12 +16,14 @@
     const projects = ref(null);
     const contact = ref(null);
     const parentContainer = ref(null);
+    const requestprojectview = ref(null);
 
     const pageLinkRefs = {
       home,
       about,
       projects,
-      contact
+      contact,
+      requestprojectview
     };
 
     const moveSelectionSliderToPageName = ()=>{
@@ -45,13 +47,6 @@
       }
     };
 
-    // const PAGE_LINK_POSITIONS = {
-    //   "home":"0px",
-    //   "about":"89.8828px",
-    //   "projects":"181.461px",
-    //   "contact":"285.203px"
-    // };
-
     const selectCurrentPage = (event)=>{
       state.currentSliderPage = event.currentTarget.id;
       moveSelectionSliderToPageName();
@@ -60,9 +55,11 @@
     watch(
       ()=>route.path,
       (newPath,oldPath)=>{
+        console.log(newPath)
         if(route.path === newPath){
           const newSetPath = newPath.substring(1,newPath.length);
           const hasParamId = newSetPath.includes("/") ? newPath.substring(1, newPath.lastIndexOf("/")) : newSetPath;
+          console.log(newSetPath);
           state.currentSliderPage = newSetPath === "" ? "home" : hasParamId;
           moveSelectionSliderToPageName();
         }
@@ -143,6 +140,19 @@
                   class="header-link text-light m-4 text-decoration-none"
                 >
                   Contact
+                </a>
+              </RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink custom class="text-decoration-none pointer-events-none cursor-not-allowed"  v-slot="{ href, navigate }" to="/requestprojectview">
+                <a
+                  :href="href"
+                  @click="(e)=>{e.preventDefault(); navigate(); selectCurrentPage(e)}"
+                  ref="requestprojectview"
+                  id="requestprojectview"
+                  class="header-link text-light m-4 text-decoration-none"
+                >
+                  Request A Project View
                 </a>
               </RouterLink>
             </li>
